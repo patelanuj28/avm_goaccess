@@ -1,0 +1,2097 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Thu Jul 18 23:55:00 2019 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>goaccess</title>
+
+</head>
+<body>
+
+<h1 align="center">goaccess</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#STORAGE">STORAGE</a><br>
+<a href="#CONFIGURATION">CONFIGURATION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#CUSTOM LOG/DATE FORMAT">CUSTOM LOG/DATE FORMAT</a><br>
+<a href="#INTERACTIVE MENU">INTERACTIVE MENU</a><br>
+<a href="#EXAMPLES">EXAMPLES</a><br>
+<a href="#NOTES">NOTES</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">goaccess
+&minus; fast web log analyzer and interactive viewer.</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>goaccess
+[filename] [options...] [-c][-M][-H][-q][-d][...]</b></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>goaccess</b>
+GoAccess is an open source real-time web log analyzer and
+interactive viewer that runs in a <i>terminal</i> in *nix
+systems or through your <i>browser.</i></p>
+
+<p style="margin-left:11%; margin-top: 1em">It provides
+fast and valuable HTTP statistics for system administrators
+that require a visual server report on the fly.</p>
+
+<p style="margin-left:11%; margin-top: 1em">GoAccess parses
+the specified web log file and outputs the data to the X
+terminal. Features include: <br>
+General Statistics:</p>
+
+<p style="margin-left:22%;">This panel gives a summary of
+several metrics, such as the number of valid and invalid
+requests, time taken to analyze the dataset, unique
+visitors, requested files, static files (CSS, ICO, JPG, etc)
+HTTP referrers, 404s, size of the parsed log file and
+bandwidth consumption.</p>
+
+<p style="margin-left:11%;">Unique visitors</p>
+
+<p style="margin-left:22%;">This panel shows metrics such
+as hits, unique visitors and cumulative bandwidth per date.
+HTTP requests containing the same IP, the same date, and the
+same user agent are considered a unique visitor. By default,
+it includes web crawlers/spiders.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Optionally,
+date specificity can be set to the hour level using
+<i>--date-spec=hr</i> which will display dates such as
+05/Jun/2016:16. This is great if you want to track your
+daily traffic at the hour level.</p>
+
+<p style="margin-left:11%;">Requested files</p>
+
+<p style="margin-left:22%;">This panel displays the most
+requested files on your web server. It shows hits, unique
+visitors, and percentage, along with the cumulative
+bandwidth, protocol, and the request method used.</p>
+
+<p style="margin-left:11%;">Requested static files</p>
+
+<p style="margin-left:22%;">Lists the most frequently
+static files such as: JPG, CSS, SWF, JS, GIF, and PNG file
+types, along with the same metrics as the last panel.
+Additional static files can be added to the configuration
+file.</p>
+
+<p style="margin-left:11%;">404 or Not Found</p>
+
+<p style="margin-left:22%;">Displays the same metrics as
+the previous request panels, however, its data contains all
+pages that were not found on the server, or commonly known
+as 404 status code.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>Hosts</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>This panel has detailed information on the hosts
+themselves. This is great for spotting aggressive crawlers
+and identifying who&rsquo;s eating your bandwidth.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Expanding the
+panel can display more information such as host&rsquo;s
+reverse DNS lookup result, country of origin and city. If
+the <i>-a</i> argument is enabled, a list of user agents can
+be displayed by selecting the desired IP address, and then
+pressing ENTER.</p>
+
+<p style="margin-left:11%;">Operating Systems</p>
+
+<p style="margin-left:22%;">This panel will report which
+operating system the host used when it hit the server. It
+attempts to provide the most specific version of each
+operating system.</p>
+
+<p style="margin-left:11%;">Browsers</p>
+
+<p style="margin-left:22%;">This panel will report which
+browser the host used when it hit the server. It attempts to
+provide the most specific version of each browser.</p>
+
+<p style="margin-left:11%;">Visit Times</p>
+
+<p style="margin-left:22%;">This panel will display an
+hourly report. This option displays 24 data points, one for
+each hour of the day.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Optionally,
+hour specificity can be set to the tenth of an hour level
+using <i>--hour-spec=min</i> which will display hours as
+16:4 This is great if you want to spot peaks of traffic on
+your server.</p>
+
+<p style="margin-left:11%;">Virtual Hosts</p>
+
+<p style="margin-left:22%;">This panel will display all the
+different virtual hosts parsed from the access log. This
+panel is displayed if <i>%v</i> is used within the
+log-format string.</p>
+
+<p style="margin-left:11%;">Referrers URLs</p>
+
+<p style="margin-left:22%;">If the host in question
+accessed the site via another resource, or was
+linked/diverted to you from another host, the URL they were
+referred from will be provided in this panel. See
+&lsquo;--ignore-panel&lsquo; in your configuration file to
+enable it. <i>disabled</i> by default.</p>
+
+<p style="margin-left:11%;">Referring Sites</p>
+
+<p style="margin-left:22%;">This panel will display only
+the host part but not the whole URL. The URL where the
+request came from.</p>
+
+<p style="margin-left:11%;">Keyphrases</p>
+
+<p style="margin-left:22%;">It reports keyphrases used on
+Google search, Google cache, and Google translate that have
+lead to your web server. At present, it only supports Google
+search queries via HTTP. See &lsquo;--ignore-panel&lsquo; in
+your configuration file to enable it. <i>disabled</i> by
+default.</p>
+
+<p style="margin-left:11%;">Geo Location</p>
+
+<p style="margin-left:22%;">Determines where an IP address
+is geographically located. Statistics are broken down by
+continent and country. It needs to be compiled with
+GeoLocation support.</p>
+
+<p style="margin-left:11%;">HTTP Status Codes</p>
+
+<p style="margin-left:22%;">The values of the numeric
+status code to HTTP requests.</p>
+
+<p style="margin-left:11%;">Remote User (HTTP
+authentication)</p>
+
+<p style="margin-left:22%;">This is the userid of the
+person requesting the document as determined by HTTP
+authentication. If the document is not password protected,
+this part will be &quot;-&quot; just like the previous one.
+This panel is not enabled unless <i>%e</i> is given within
+the log-format variable.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>NOTE:</i>
+Optionally and if configured, all panels can display the
+average time taken to serve the request.</p>
+
+<h2>STORAGE
+<a name="STORAGE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">There are three
+storage options that can be used with GoAccess. Choosing one
+will depend on your environment and needs. <br>
+Default Hash Tables</p>
+
+<p style="margin-left:22%;">In-memory storage provides
+better performance at the cost of limiting the dataset size
+to the amount of available physical memory. By default
+GoAccess uses in-memory hash tables. If your dataset can fit
+in memory, then this will perform fine. It has very good
+memory usage and pretty good performance.</p>
+
+<p style="margin-left:11%;">Tokyo Cabinet On-Disk B+
+Tree</p>
+
+<p style="margin-left:22%;">Use this storage method for
+large datasets where it is not possible to fit everything in
+memory. The B+ tree database is slower than any of the hash
+databases since data has to be committed to disk. However,
+using an SSD greatly increases the performance. You may also
+use this storage method if you need data persistence to
+quickly load statistics at a later date.</p>
+
+<p style="margin-left:11%;">Tokyo Cabinet In-memory Hash
+Database</p>
+
+<p style="margin-left:22%;">An alternative to the default
+hash tables. It uses generic typing and thus it&rsquo;s
+performance in terms of memory and speed is average.</p>
+
+<h2>CONFIGURATION
+<a name="CONFIGURATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Multiple
+options can be used to configure GoAccess. For a complete
+up-to-date list of configure options, run <i>./configure
+--help</i> <b><br>
+&minus;&minus;enable-debug</b></p>
+
+<p style="margin-left:22%;">Compile with debugging symbols
+and turn off compiler optimizations.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;enable-utf8</b></p>
+
+<p style="margin-left:22%;">Compile with wide character
+support. Ncursesw is required.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;enable-geoip=&lt;legacy|mmdb&gt;</b></p>
+
+<p style="margin-left:22%;">Compile with GeoLocation
+support. MaxMind&rsquo;s GeoIP is required. <i>legacy</i>
+will utilize the original GeoIP databases. <i>mmdb</i> will
+utilize the enhanced GeoIP2 databases.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;enable-tcb=&lt;memhash|btree&gt;</b></p>
+
+<p style="margin-left:22%;">Compile with Tokyo Cabinet
+storage support. <i>memhash</i> will utilize Tokyo
+Cabinet&rsquo;s on-memory hash database. <i>btree</i> will
+utilize Tokyo Cabinet&rsquo;s on-disk B+ Tree database.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;disable-zlib</b></p>
+
+<p style="margin-left:22%;">Disable zlib compression on B+
+Tree database.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;disable-bzip</b></p>
+
+<p style="margin-left:22%;">Disable bzip2 compression on B+
+Tree database.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;with-getline</b></p>
+
+<p style="margin-left:22%;">Dynamically expands line buffer
+in order to parse full line requests instead of using a
+fixed size buffer of 4096.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;with-openssl</b></p>
+
+<p style="margin-left:22%;">Compile GoAccess with OpenSSL
+support for its WebSocket server.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The following
+options can be supplied to the command or specified in the
+configuration file. If specified in the configuration file,
+long options need to be used without prepending -- and
+without using the equal sign =.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>LOG/DATE/TIME
+FORMAT <br>
+&minus;&minus;time-format=&lt;timeformat&gt;</b></p>
+
+<p style="margin-left:22%;">The time-format variable
+followed by a space, specifies the log format time
+containing either a name of a predefined format (see options
+below) or any combination of regular characters and special
+format specifiers.</p>
+
+<p style="margin-left:22%; margin-top: 1em">They all begin
+with a percentage (%) sign. See &lsquo;man strftime&lsquo;.
+<i>%T or %H:%M:%S.</i></p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that if a
+timestamp is given in microseconds, <i>%f</i> must be used
+as time-format</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;date-format=&lt;dateformat&gt;</b></p>
+
+<p style="margin-left:22%;">The date-format variable
+followed by a space, specifies the log format time
+containing either a name of a predefined format (see options
+below) or any combination of regular characters and special
+format specifiers.</p>
+
+<p style="margin-left:22%; margin-top: 1em">They all begin
+with a percentage (%) sign. See &lsquo;man strftime&lsquo;.
+<i>%Y-%m-%d.</i></p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that if a
+timestamp is given in microseconds, <i>%f</i> must be used
+as date-format</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;log-format=&lt;logformat&gt;</b></p>
+
+<p style="margin-left:22%;">The log-format variable
+followed by a space or <i>\t</i> for tab-delimited,
+specifies the log format string.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that if
+there are spaces within the format, the string needs to be
+enclosed in single/double quotes. Inner quotes need to be
+escaped.</p>
+
+<p style="margin-left:22%; margin-top: 1em">In addition to
+specifying the raw log/date/time formats, for simplicity,
+any of the following predefined log format names can be
+supplied to the log/date/time-format variables. GoAccess can
+also handle one predefined name in one variable and another
+predefined name in another variable.</p>
+
+<p style="margin-left:22%; margin-top: 1em">COMBINED -
+Combined Log Format, <br>
+VCOMBINED - Combined Log Format with Virtual Host, <br>
+COMMON - Common Log Format, <br>
+VCOMMON - Common Log Format with Virtual Host, <br>
+W3C - W3C Extended Log File Format, <br>
+SQUID - Native Squid Log Format, <br>
+CLOUDFRONT - Amazon CloudFront Web Distribution, <br>
+CLOUDSTORAGE - Google Cloud Storage, <br>
+AWSELB - Amazon Elastic Load Balancing, <br>
+AWSS3 - Amazon Simple Storage Service (S3)</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+Piping data into GoAccess won&rsquo;t prompt a log/date/time
+configuration dialog, you will need to previously define it
+in your configuration file or in the command line.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>USER
+INTERFACE OPTIONS <br>
+&minus;c &minus;&minus;config-dialog</b></p>
+
+<p style="margin-left:22%;">Prompt log/time/date
+configuration window on program start. Only when curses is
+initialized.</p>
+
+<p style="margin-left:11%;"><b>&minus;i
+&minus;&minus;hl-header</b></p>
+
+<p style="margin-left:22%;">Color highlight active terminal
+panel.</p>
+
+<p style="margin-left:11%;"><b>&minus;m
+&minus;&minus;with-mouse</b></p>
+
+<p style="margin-left:22%;">Enable mouse support on main
+terminal dashboard.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;&minus;color=&lt;fg:bg[attrs,
+PANEL]&gt;</b></p>
+
+<p style="margin-left:22%;">Specify custom colors for the
+terminal output.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Color
+Syntax</i> <br>
+DEFINITION space/tab colorFG#:colorBG#
+[attributes,PANEL]</p>
+
+<p style="margin-left:22%; margin-top: 1em">FG# =
+foreground color [-1...255] (-1 = default term color) <br>
+BG# = background color [-1...255] (-1 = default term
+color)</p>
+
+<p style="margin-left:22%; margin-top: 1em">Optionally, it
+is possible to apply color attributes (multiple attributes
+are comma separated), such as: <i>bold, underline, normal,
+reverse, blink</i></p>
+
+<p style="margin-left:22%; margin-top: 1em">If desired, it
+is possible to apply custom colors per panel, that is, a
+metric in the REQUESTS panel can be of color A, while the
+same metric in the BROWSERS panel can be of color B.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Available
+color definitions:</i> <br>
+COLOR_MTRC_HITS <br>
+COLOR_MTRC_VISITORS <br>
+COLOR_MTRC_DATA <br>
+COLOR_MTRC_BW <br>
+COLOR_MTRC_AVGTS <br>
+COLOR_MTRC_CUMTS <br>
+COLOR_MTRC_MAXTS <br>
+COLOR_MTRC_PROT <br>
+COLOR_MTRC_MTHD <br>
+COLOR_MTRC_HITS_PERC <br>
+COLOR_MTRC_HITS_PERC_MAX <br>
+COLOR_MTRC_VISITORS_PERC <br>
+COLOR_MTRC_VISITORS_PERC_MAX <br>
+COLOR_PANEL_COLS <br>
+COLOR_BARS <br>
+COLOR_ERROR <br>
+COLOR_SELECTED <br>
+COLOR_PANEL_ACTIVE <br>
+COLOR_PANEL_HEADER <br>
+COLOR_PANEL_DESC <br>
+COLOR_OVERALL_LBLS <br>
+COLOR_OVERALL_VALS <br>
+COLOR_OVERALL_PATH <br>
+COLOR_ACTIVE_LABEL <br>
+COLOR_BG <br>
+COLOR_DEFAULT <br>
+COLOR_PROGRESS</p>
+
+<p style="margin-left:22%; margin-top: 1em">See
+configuration file for a sample color scheme.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;color-scheme=&lt;1|2|3&gt;</b></p>
+
+<p style="margin-left:22%;">Choose among color schemes.
+<i>1</i> for the default grey scheme. <i>2</i> for the green
+scheme. <i>3</i> for the Monokai scheme (shown only if
+terminal supports 256 colors).</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;crawlers-only</b></p>
+
+<p style="margin-left:22%;">Parse and display only crawlers
+(bots).</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;html-custom-css=&lt;path/custom.css&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies a custom CSS file
+path to load in the HTML report.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;html-custom-js=&lt;path/custom.js&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies a custom JS file path
+to load in the HTML report.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;html-report-title=&lt;title&gt;</b></p>
+
+<p style="margin-left:22%;">Set HTML report page title and
+header.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;html-prefs=&lt;JSON&gt;</b></p>
+
+<p style="margin-left:22%;">Set HTML report default
+preferences. Supply a valid JSON object containing the HTML
+preferences. It allows the ability to customize each panel
+plot. See example below.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+The JSON object passed needs to be a one line JSON string.
+For instance,</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">&minus;&minus;html-prefs=&rsquo;{&quot;theme&quot;:&quot;bright&quot;,&quot;perPage&quot;:5,&quot;layout&quot;:&quot;horizontal&quot;,&quot;showTables&quot;:true,&quot;visitors&quot;:{&quot;plot&quot;:{&quot;chartType&quot;:&quot;bar&quot;}}}&rsquo;</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;json-pretty-print</b></p>
+
+<p style="margin-left:22%;">Format JSON output using tabs
+and newlines.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+This is not recommended when outputting a real-time HTML
+report since the WebSocket payload will much much
+larger.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;max-items=&lt;number&gt;</b></p>
+
+<p style="margin-left:22%;">The maximum number of items to
+display per panel. The maximum can be a number between 1 and
+n.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+Only the CSV and JSON output allow a maximum number greater
+than the default value of 366 (or 50 in the real-time HTML
+output) items per panel.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-color</b></p>
+
+<p style="margin-left:22%;">Turn off colored output. This
+is the default output on terminals that do not support
+colors.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-column-names</b></p>
+
+<p style="margin-left:22%;">Don&rsquo;t write column names
+in the terminal output. By default, it displays column names
+for each available metric in every panel.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-csv-summary</b></p>
+
+<p style="margin-left:22%;">Disable summary metrics on the
+CSV output.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-progress</b></p>
+
+<p style="margin-left:22%;">Disable progress metrics [total
+requests/requests per second].</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-tab-scroll</b></p>
+
+<p style="margin-left:22%;">Disable scrolling through
+panels when TAB is pressed or when a panel is selected using
+a numeric key.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-html-last-updated</b></p>
+
+<p style="margin-left:22%;">Do not show the last updated
+field displayed in the HTML generated report.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-parsing-spinner</b></p>
+
+<p style="margin-left:22%;">Do now show the progress
+metrics and parsing spinner.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>SERVER
+OPTIONS</b></p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>&minus;&minus;addr</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Specify IP address to bind the server to. Otherwise it
+binds to 0.0.0.0.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Usually there
+is no need to specify the address, unless you intentionally
+would like to bind the server to a different address within
+your server.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;daemonize</b></p>
+
+<p style="margin-left:22%;">Run GoAccess as daemon (only if
+<b>&minus;&minus;real-time-html enabled).</b></p>
+
+<p style="margin-left:22%; margin-top: 1em">Note:
+It&rsquo;s important to make use of absolute paths across
+GoAccess&rsquo; configuration.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;origin=&lt;url&gt;</b></p>
+
+<p style="margin-left:22%;">Ensure clients send the
+specified origin header upon the WebSocket handshake.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;pid-file=&lt;path/goaccess.pid&gt;</b></p>
+
+<p style="margin-left:22%;">Write the daemon PID to a file
+when used along the --daemonize option.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;port=&lt;port&gt;</b></p>
+
+<p style="margin-left:22%;">Specify the port to use. By
+default GoAccess&rsquo; WebSocket server listens on port
+7890.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;real-time-html</b></p>
+
+<p style="margin-left:22%;">Enable real-time HTML
+output.</p>
+
+<p style="margin-left:22%; margin-top: 1em">GoAccess uses
+its own WebSocket server to push the data from the server to
+the client. See http://gwsocket.io for more details how the
+WebSocket server works.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ws-url=&lt;[scheme://]url[:port]&gt;</b></p>
+
+<p style="margin-left:22%;">URL to which the WebSocket
+server responds. This is the URL supplied to the WebSocket
+constructor on the client side.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Optionally, it
+is possible to specify the WebSocket URI scheme, such as
+<i>ws://</i> or <i>wss://</i> for unencrypted and encrypted
+connections. e.g., <i>wss://goaccess.io</i></p>
+
+<p style="margin-left:22%; margin-top: 1em">If GoAccess is
+running behind a proxy, you could set the client side to
+connect to a different port by specifying the host followed
+by a colon and the port. e.g., <i>goaccess.io:9999</i></p>
+
+<p style="margin-left:22%; margin-top: 1em">By default, it
+will attempt to connect to the generated report&rsquo;s
+hostname. If GoAccess is running on a remote server, the
+host of the remote server should be specified here. Also,
+make sure it is a valid host and NOT an http address.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;fifo-in=&lt;path/file&gt;</b></p>
+
+<p style="margin-left:22%;">Creates a named pipe (FIFO)
+that reads from on the given path/file.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;fifo-out=&lt;path/file&gt;</b></p>
+
+<p style="margin-left:22%;">Creates a named pipe (FIFO)
+that writes to the given path/file.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ssl-cert=&lt;cert.crt&gt;</b></p>
+
+<p style="margin-left:22%;">Path to TLS/SSL certificate. In
+order to enable TLS/SSL support, GoAccess requires that
+&minus;&minus;ssl-cert and &minus;&minus;ssl-key are
+used.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured using --with-openssl</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ssl-key=&lt;priv.key&gt;</b></p>
+
+<p style="margin-left:22%;">Path to TLS/SSL private key. In
+order to enable TLS/SSL support, GoAccess requires that
+&minus;&minus;ssl-cert and &minus;&minus;ssl-key are
+used.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured using --with-openssl</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>FILE OPTIONS
+<br>
+&minus;f &minus;&minus;log-file=&lt;logfile&gt;</b></p>
+
+<p style="margin-left:22%;">Specify the path to the input
+log file. If set in the config file, it will take priority
+over -f from the command line.</p>
+
+<p style="margin-left:11%;"><b>&minus;S
+&minus;&minus;log-size=&lt;bytes&gt;</b></p>
+
+<p style="margin-left:22%;">Specify the log size in bytes.
+This is useful when piping in logs for processing in which
+the log size can be explicitly set.</p>
+
+<p style="margin-left:11%;"><b>&minus;l
+&minus;&minus;debug-file=&lt;debugfile&gt;</b></p>
+
+<p style="margin-left:22%;">Send all debug messages to the
+specified file.</p>
+
+<p style="margin-left:11%;"><b>&minus;p
+&minus;&minus;config-file=&lt;configfile&gt;</b></p>
+
+<p style="margin-left:22%;">Specify a custom configuration
+file to use. If set, it will take priority over the global
+configuration file (if any).</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;invalid-requests=&lt;filename&gt;</b></p>
+
+<p style="margin-left:22%;">Log invalid requests to the
+specified file.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;no-global-config</b></p>
+
+<p style="margin-left:22%;">Do not load the global
+configuration file. This directory should normally be
+/usr/local/etc, unless specified with
+<i>--sysconfdir=/dir.</i> See --dcf option for finding the
+default configuration file.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>PARSE
+OPTIONS <br>
+&minus;a &minus;&minus;agent-list</b></p>
+
+<p style="margin-left:22%;">Enable a list of user-agents by
+host. For faster parsing, do not enable this flag.</p>
+
+<p style="margin-left:11%;"><b>&minus;d
+&minus;&minus;with-output-resolver</b></p>
+
+<p style="margin-left:22%;">Enable IP resolver on HTML|JSON
+output.</p>
+
+<p style="margin-left:11%;"><b>&minus;e
+&minus;&minus;exclude-ip=&lt;IP|IP-range&gt;</b></p>
+
+<p style="margin-left:22%;">Exclude an IPv4 or IPv6 from
+being counted. Ranges can be included as well using a dash
+in between the IPs (start-end).</p>
+
+
+<p style="margin-left:22%; margin-top: 1em"><i>Examples:</i>
+<br>
+exclude-ip 127.0.0.1 <br>
+exclude-ip 192.168.0.1-192.168.0.100 <br>
+exclude-ip ::1 <br>
+exclude-ip 0:0:0:0:0:ffff:808:804-0:0:0:0:0:ffff:808:808</p>
+
+<p style="margin-left:11%;"><b>&minus;H
+&minus;&minus;http-protocol=&lt;yes|no&gt;</b></p>
+
+<p style="margin-left:22%;">Set/unset HTTP request
+protocol. This will create a request key containing the
+request protocol + the actual request.</p>
+
+<p style="margin-left:11%;"><b>&minus;M
+&minus;&minus;http-method=&lt;yes|no&gt;</b></p>
+
+<p style="margin-left:22%;">Set/unset HTTP request method.
+This will create a request key containing the request method
++ the actual request.</p>
+
+<p style="margin-left:11%;"><b>&minus;o
+&minus;&minus;output=&lt;path/file.[json|csv|html]&gt;</b></p>
+
+<p style="margin-left:22%;">Write output to stdout given
+one of the following files and the corresponding extension
+for the output format:</p>
+
+<p style="margin-left:22%; margin-top: 1em">/path/file.csv
+- Comma-separated values (CSV) <br>
+/path/file.json - JSON (JavaScript Object Notation) <br>
+/path/file.html - HTML</p>
+
+<p style="margin-left:11%;"><b>&minus;q
+&minus;&minus;no-query-string</b></p>
+
+<p style="margin-left:22%;">Ignore request&rsquo;s query
+string. i.e., www.google.com/page.htm?query =&gt;
+www.google.com/page.htm.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+Removing the query string can greatly decrease memory
+consumption, especially on timestamped requests.</p>
+
+<p style="margin-left:11%;"><b>&minus;r
+&minus;&minus;no-term-resolver</b></p>
+
+<p style="margin-left:22%;">Disable IP resolver on terminal
+output.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;444-as-404</b></p>
+
+<p style="margin-left:22%;">Treat non-standard status code
+444 as 404.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;4xx-to-unique-count</b></p>
+
+<p style="margin-left:22%;">Add 4xx client errors to the
+unique visitors count.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;accumulated-time</b></p>
+
+<p style="margin-left:22%;">Store accumulated processing
+time from parsing day-by-day logs.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;anonymize-ip</b></p>
+
+<p style="margin-left:22%;">Anonymize the client IP
+address. The IP anonymization option sets the last octet of
+IPv4 user IP addresses and the last 80 bits of IPv6
+addresses to zeros. e.g., 192.168.20.100 =&gt; 192.168.20.0
+e.g., 2a03:2880:2110:df07:face:b00c::1 =&gt;
+2a03:2880:2110:df07::</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;all-static-files</b></p>
+
+<p style="margin-left:22%;">Include static files that
+contain a query string. e.g.,
+/fonts/fontawesome-webfont.woff?v=4.0.3</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;browsers-file=&lt;path&gt;</b></p>
+
+<p style="margin-left:22%;">Include an additional delimited
+list of browsers/crawlers/feeds etc. See
+config/browsers.list for an example or
+https://raw.githubusercontent.com/allinurl/goaccess/master/config/browsers.list</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;date-spec=&lt;date|hr&gt;</b></p>
+
+<p style="margin-left:22%;">Set the date specificity to
+either date (default) or hr to display hours appended to the
+date.</p>
+
+<p style="margin-left:22%; margin-top: 1em">This is used in
+the visitors panel. It&rsquo;s useful for tracking visitors
+at the hour level. For instance, an hour specificity would
+yield to display traffic as 18/Dec/2010:19</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;double-decode</b></p>
+
+<p style="margin-left:22%;">Decode double-encoded values.
+This includes, user-agent, request, and referer.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;enable-panel=&lt;PANEL&gt;</b></p>
+
+<p style="margin-left:22%;">Enable parsing and displaying
+the given panel.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Available
+panels:</i> <br>
+VISITORS <br>
+REQUESTS <br>
+REQUESTS_STATIC <br>
+NOT_FOUND <br>
+HOSTS <br>
+OS <br>
+BROWSERS <br>
+VISIT_TIMES <br>
+VIRTUAL_HOSTS <br>
+REFERRERS <br>
+REFERRING_SITES <br>
+KEYPHRASES <br>
+STATUS_CODES <br>
+REMOTE_USER <br>
+GEO_LOCATION</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;hide-referer=&lt;NEEDLE&gt;</b></p>
+
+<p style="margin-left:22%;">Hide a referer but still count
+it. Wild cards are allowed in the needle. i.e.,
+*.bing.com.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;hour-spec=&lt;hr|min&gt;</b></p>
+
+<p style="margin-left:22%;">Set the time specificity to
+either hour (default) or min to display the tenth of an hour
+appended to the hour.</p>
+
+<p style="margin-left:22%; margin-top: 1em">This is used in
+the time distribution panel. It&rsquo;s useful for tracking
+peaks of traffic on your server at specific times.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ignore-crawlers</b></p>
+
+<p style="margin-left:22%;">Ignore crawlers from being
+counted.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ignore-panel=&lt;PANEL&gt;</b></p>
+
+<p style="margin-left:22%;">Ignore parsing and displaying
+the given panel.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Available
+panels:</i> <br>
+VISITORS <br>
+REQUESTS <br>
+REQUESTS_STATIC <br>
+NOT_FOUND <br>
+HOSTS <br>
+OS <br>
+BROWSERS <br>
+VISIT_TIMES <br>
+VIRTUAL_HOSTS <br>
+REFERRERS <br>
+REFERRING_SITES <br>
+KEYPHRASES <br>
+STATUS_CODES <br>
+REMOTE_USER</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ignore-referer=&lt;referer&gt;</b></p>
+
+<p style="margin-left:22%;">Ignore referers from being
+counted. Wildcards allowed. e.g., <i>*.domain.com
+ww?.domain.*</i></p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;ignore-status=&lt;CODE&gt;</b></p>
+
+<p style="margin-left:22%;">Ignore parsing and displaying
+one or multiple status code(s). For multiple status codes,
+use this option multiple times.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;num-tests=&lt;number&gt;</b></p>
+
+<p style="margin-left:22%;">Number of lines from the access
+log to test against the provided log/date/time format. By
+default, the parser is set to test 10 lines. If set to 0,
+the parser won&rsquo;t test any lines and will parse the
+whole access log. If a line matches the given log/date/time
+format before it reaches <i>&lt;number&gt;,</i> the parser
+will consider the log to be valid, otherwise GoAccess will
+return EXIT_FAILURE and display the relevant error
+messages.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;process-and-exit</b></p>
+
+<p style="margin-left:22%;">Parse log and exit without
+outputting data. Useful if we are looking to only add new
+data to the on-disk database without outputting to a file or
+a terminal.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;real-os</b></p>
+
+<p style="margin-left:22%;">Display real OS names. e.g,
+Windows XP, Snow Leopard.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;sort-panel=&lt;PANEL,FIELD,ORDER&gt;</b></p>
+
+<p style="margin-left:22%;">Sort panel on initial load.
+Sort options are separated by comma. Options are in the
+form: PANEL,METRIC,ORDER</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Available
+metrics:</i> <br>
+BY_HITS - Sort by hits <br>
+BY_VISITORS - Sort by unique visitors <br>
+BY_DATA - Sort by data <br>
+BY_BW - Sort by bandwidth <br>
+BY_AVGTS - Sort by average time served <br>
+BY_CUMTS - Sort by cumulative time served <br>
+BY_MAXTS - Sort by maximum time served <br>
+BY_PROT - Sort by http protocol <br>
+BY_MTHD - Sort by http method</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Available
+orders:</i> <br>
+ASC <br>
+DESC</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;static-file=&lt;extension&gt;</b></p>
+
+<p style="margin-left:22%;">Add static file extension.
+e.g.: <i>.mp3</i> Extensions are case sensitive.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>GEOLOCATION
+OPTIONS <br>
+&minus;g &minus;&minus;std-geoip</b></p>
+
+<p style="margin-left:22%;">Standard GeoIP database for
+less memory usage.</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;geoip-database=&lt;geofile&gt;</b></p>
+
+<p style="margin-left:22%;">Specify path to GeoIP database
+file. i.e., GeoLiteCity.dat.</p>
+
+<p style="margin-left:22%; margin-top: 1em">If using
+GeoIP2, you will need to download the GeoLite2 City or
+Country database from MaxMind.com and use the option
+--geoip-database to specify the database. You can also get
+updated database files for GeoIP legacy, you can find these
+as GeoLite Legacy Databases from MaxMind.com. IPv4 and IPv6
+files are supported as well. For updated DB URLs, please see
+the default GoAccess configuration file.</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i>
+--geoip-city-data is an alias of --geoip-database.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>OTHER
+OPTIONS <br>
+&minus;h &minus;&minus;help</b></p>
+
+<p style="margin-left:22%;">The help.</p>
+
+<p style="margin-left:11%;"><b>&minus;s
+&minus;&minus;storage</b></p>
+
+<p style="margin-left:22%;">Display current storage method.
+i.e., B+ Tree, Hash.</p>
+
+<p style="margin-left:11%;"><b>&minus;V
+&minus;&minus;version</b></p>
+
+<p style="margin-left:22%;">Display version information and
+exit.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>&minus;&minus;dcf</b></p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Display the path of the default config file when
+&lsquo;-p&lsquo; is not used.</p></td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em"><b>ON-DISK
+STORAGE OPTIONS <br>
+&minus;&minus;keep-db-files</b></p>
+
+<p style="margin-left:22%;">Persist parsed data into disk.
+If database files exist, files will be overwritten. This
+should be set to the first dataset. Setting it to false will
+delete all database files when exiting the program. See
+examples below.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;load-from-disk</b></p>
+
+<p style="margin-left:22%;">Load previously stored data
+from disk. If reading persisted data only, the database
+files need to exist. See <i>keep-db-files</i> and examples
+below.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;db-path=&lt;dir&gt;</b></p>
+
+<p style="margin-left:22%;">Path where the on-disk database
+files are stored. The default value is the
+<i>/tmp/goaccess&lt;PID&gt;</i> directory (created
+on-demand).</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;xmmap=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Set the size in bytes of the
+extra mapped memory. The default value is 0.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;cache-lcnum=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies the maximum number of
+leaf nodes to be cached. If it is not more than 0, the
+default value is specified. The default value is 1024.
+Setting a larger value will increase speed performance,
+however, memory consumption will increase. Lower value will
+decrease memory consumption.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;cache-ncnum=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies the maximum number of
+non-leaf nodes to be cached. If it is not more than 0, the
+default value is specified. The default value is 512.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;tune-lmemb=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies the number of members
+in each leaf page. If it is not more than 0, the default
+value is specified. The default value is 128.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;tune-nmemb=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies the number of members
+in each non-leaf page. If it is not more than 0, the default
+value is specified. The default value is 256.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;tune-bnum=&lt;num&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies the number of
+elements of the bucket array. If it is not more than 0, the
+default value is specified. The default value is 32749.
+Suggested size of the bucket array is about from 1 to 4
+times of the number of all pages to be stored.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+
+<p style="margin-left:11%;"><b>&minus;&minus;compression=&lt;zlib|bz2&gt;</b></p>
+
+<p style="margin-left:22%;">Specifies that each page is
+compressed with ZLIB|BZ2 encoding.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Only if
+configured with --enable-tcb=btree</p>
+
+<h2>CUSTOM LOG/DATE FORMAT
+<a name="CUSTOM LOG/DATE FORMAT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">GoAccess can
+parse virtually any web log format.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Predefined
+options include, Common Log Format (CLF), Combined Log
+Format (XLF/ELF), including virtual host, Amazon CloudFront
+(Download Distribution), Google Cloud Storage and W3C format
+(IIS).</p>
+
+<p style="margin-left:11%; margin-top: 1em">GoAccess allows
+any custom format string as well.</p>
+
+<p style="margin-left:11%; margin-top: 1em">There are two
+ways to configure the log format. The easiest is to run
+GoAccess with <i>-c</i> to prompt a configuration window.
+Otherwise, it can be configured under ~/.goaccessrc or the
+%sysconfdir%. <br>
+time-format</p>
+
+<p style="margin-left:22%;">The <i>time-format</i> variable
+followed by a space, specifies the log format time
+containing any combination of regular characters and special
+format specifiers. They all begin with a percentage (%)
+sign. See &lsquo;man strftime&lsquo;. <i>%T or
+%H:%M:%S.</i></p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i> If
+a timestamp is given in microseconds, <i>%f</i> must be used
+as <i>time-format</i></p>
+
+<p style="margin-left:11%;">date-format</p>
+
+<p style="margin-left:22%;">The <i>date-format</i> variable
+followed by a space, specifies the log format date
+containing any combination of regular characters and special
+format specifiers. They all begin with a percentage (%)
+sign. See &lsquo;man strftime&lsquo;. e.g.,
+<i>%Y-%m-%d.</i></p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i> If
+a timestamp is given in microseconds, <i>%f</i> must be used
+as <i>date-format</i></p>
+
+<p style="margin-left:11%;">log-format</p>
+
+<p style="margin-left:22%;">The <i>log-format</i> variable
+followed by a space or <i>\t</i> , specifies the log format
+string.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%x</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>A date and time field matching the <i>time-format</i>
+and <i>date-format</i> variables. This is used when given a
+timestamp or the date &amp; time are concatenated as a
+single string (e.g., 1501647332 or 20170801235000) instead
+of the date and time being in two separated variables.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%t</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>time field matching the <i>time-format</i> variable.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%d</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>date field matching the <i>date-format</i> variable.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%v</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The canonical Server Name of the server serving the
+request (Virtual Host).</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%e</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>This is the userid of the person requesting the document
+as determined by HTTP authentication.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%h</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>host (the client IP address, either IPv4 or IPv6)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%r</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The request line from the client. This requires specific
+delimiters around the request (as single quotes, double
+quotes, or anything else) to be parsable. If not, we have to
+use a combination of special format specifiers as %m %U
+%H.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%q</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The query string.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%m</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The request method.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%U</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The URL path requested.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em"><i>Note:</i> If
+the query string is in %U, there is no need to use
+<i>%q.</i> However, if the URL path, does not include any
+query string, you may use <i>%q</i> and the query string
+will be appended to the request.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">%H</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">The request protocol.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%s</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The status code that the server sends back to the
+client.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%b</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The size of the object returned to the client.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%R</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The &quot;Referrer&quot; HTTP request header.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%u</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The user-agent HTTP request header.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%D</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The time taken to serve the request, in microseconds as
+a decimal number.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%T</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The time taken to serve the request, in seconds with
+milliseconds resolution.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%L</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The time taken to serve the request, in milliseconds as
+a decimal number.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%^</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Ignore this field.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>%~</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Move forward through the log string until a non-space
+(!isspace) char is found.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>~h</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The host (the client IP address, either IPv4 or IPv6) in
+a X-Forwarded-For (XFF) field.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">It uses a
+special specifier which consists of a tilde before the host
+specifier, followed by the character(s) that delimit the XFF
+field, which are enclosed by curly braces (i.e., ~h{,&quot;
+})</p>
+
+<p style="margin-left:22%; margin-top: 1em">For example,
+~h{,&quot; } is used in order to parse &quot;11.25.11.53,
+17.68.33.17&quot; field which is delimited by a double
+quote, a comma, and a space.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>Note:</i> In
+order to get the average, cumulative and maximum time served
+in GoAccess, you will need to start logging response times
+in your web server. In Nginx you can add
+<i>$request_time</i> to your log format, or <i>%D</i> in
+Apache.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>Important:</i>
+If multiple time served specifiers are used at the same
+time, the first option specified in the format string will
+take priority over the other specifiers.</p>
+
+<p style="margin-left:11%; margin-top: 1em">GoAccess
+<i>requires</i> the following fields:</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>%h</i> a
+valid IPv4/6</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>%d</i> a
+valid date</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>%r</i> the
+request</p>
+
+<h2>INTERACTIVE MENU
+<a name="INTERACTIVE MENU"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">F1 or h</p>
+
+<p style="margin-left:22%;">Main help.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>F5</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Redraw main window.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>q</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Quit the program, current window or collapse active
+module</p> </td></tr>
+</table>
+
+<p style="margin-left:11%;">o or ENTER</p>
+
+<p style="margin-left:22%;">Expand selected module or open
+window</p>
+
+<p style="margin-left:11%;">0-9 and Shift + 0</p>
+
+<p style="margin-left:22%;">Set selected module to
+active</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>j</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Scroll down within expanded module</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>k</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Scroll up within expanded module</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>c</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Set or change scheme color.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>TAB</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Forward iteration of modules. Starts from current active
+module.</p> </td></tr>
+</table>
+
+<p style="margin-left:11%;">SHIFT + TAB</p>
+
+<p style="margin-left:22%;">Backward iteration of modules.
+Starts from current active module.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>^f</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Scroll forward one screen within an active module.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>^b</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Scroll backward one screen within an active module.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>s</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Sort options for active module</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>/</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Search across all modules (regex allowed)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>n</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Find the position of the next occurrence across all
+modules.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>g</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Move to the first item or top of screen.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>G</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Move to the last item or bottom of screen.</p></td></tr>
+</table>
+
+<h2>EXAMPLES
+<a name="EXAMPLES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>Note:</i>
+Piping data into GoAccess won&rsquo;t prompt a log/date/time
+configuration dialog, you will need to previously define it
+in your configuration file or in the command line.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>DIFFERENT
+OUTPUTS</b> <br>
+To output to a terminal and generate an interactive
+report:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log</p>
+
+<p style="margin-left:11%; margin-top: 1em">To generate an
+HTML report:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -a -o report.html</p>
+
+<p style="margin-left:11%; margin-top: 1em">To generate a
+JSON report:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -a -d -o report.json</p>
+
+<p style="margin-left:11%; margin-top: 1em">To generate a
+CSV file:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log --no-csv-summary -o report.csv</p>
+
+<p style="margin-left:11%; margin-top: 1em">GoAccess also
+allows great flexibility for real-time filtering and
+parsing. For instance, to quickly diagnose issues by
+monitoring logs since goaccess was started:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># tail -f
+access.log | goaccess -</p>
+
+<p style="margin-left:11%; margin-top: 1em">And even
+better, to filter while maintaining opened a pipe to
+preserve real-time analysis, we can make use of <i>tail
+-f</i> and a matching pattern tool such as <i>grep, awk,
+sed,</i> etc:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># tail -f
+access.log | grep -i --line-buffered &rsquo;firefox&rsquo; |
+goaccess --log-format=COMBINED -</p>
+
+<p style="margin-left:11%; margin-top: 1em">or to parse
+from the beginning of the file while maintaining the pipe
+opened and applying a filter</p>
+
+<p style="margin-left:22%; margin-top: 1em"># tail -f -n +0
+access.log | grep -i --line-buffered &rsquo;firefox&rsquo; |
+goaccess --log-format=COMBINED -o report.html
+--real-time-html -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>MULTIPLE LOG
+FILES</b> <br>
+There are several ways to parse multiple logs with GoAccess.
+The simplest is to pass multiple log files to the command
+line:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log access.log.1</p>
+
+<p style="margin-left:11%; margin-top: 1em">It&rsquo;s even
+possible to parse files from a pipe while reading regular
+files:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># cat
+access.log.2 | goaccess access.log access.log.1 -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>Note</i>
+that the single dash is appended to the command line to let
+GoAccess know that it should read from the pipe.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Now if we want
+to add more flexibility to GoAccess, we can do a series of
+pipes. For instance, if we would like to process all
+compressed log files <i>access.log.*.gz</i> in addition to
+the current log file, we can do:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># zcat
+access.log.*.gz | goaccess access.log -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>Note:</i> On
+Mac OS X, use gunzip -c instead of zcat.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>REAL TIME
+HTML OUTPUT</b> <br>
+GoAccess has the ability to output real-time data in the
+HTML report. You can even email the HTML file since it is
+composed of a single file with no external file
+dependencies, how neat is that!</p>
+
+<p style="margin-left:11%; margin-top: 1em">The process of
+generating a real-time HTML report is very similar to the
+process of creating a static report. Only --real-time-html
+is needed to make it real-time.</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -o /usr/share/nginx/html/site/report.html
+--real-time-html</p>
+
+<p style="margin-left:11%; margin-top: 1em">By default,
+GoAccess will use the host name of the generated report.
+Optionally, you can specify the URL to which the
+client&rsquo;s browser will connect to. See
+https://goaccess.io/faq for a more detailed example.</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -o report.html --real-time-html
+--ws-url=goaccess.io</p>
+
+<p style="margin-left:11%; margin-top: 1em">By default,
+GoAccess listens on port 7890, to use a different port other
+than 7890, you can specify it as (make sure the port is
+opened):</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -o report.html --real-time-html --port=9870</p>
+
+<p style="margin-left:11%; margin-top: 1em">And to bind the
+WebSocket server to a different address other than 0.0.0.0,
+you can specify it as:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># goaccess
+access.log -o report.html --real-time-html
+--addr=127.0.0.1</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>Note:</i> To
+output real time data over a TLS/SSL connection, you need to
+use <i>--ssl-cert=&lt;cert.crt&gt;</i> and
+<i>--ssl-key=&lt;priv.key&gt;.</i></p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>WORKING WITH
+DATES</b> <br>
+Another useful pipe would be filtering dates out of the web
+log</p>
+
+<p style="margin-left:11%; margin-top: 1em">The following
+will get all HTTP requests starting on 05/Dec/2010 until the
+end of the file.</p>
+
+<p style="margin-left:22%; margin-top: 1em"># sed -n
+&rsquo;/05Dec2010/,$ p&rsquo; access.log | goaccess -a -</p>
+
+<p style="margin-left:11%; margin-top: 1em">or using
+relative dates such as yesterdays or tomorrows day:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># sed -n
+&rsquo;/&rsquo;$(date &rsquo;+%d%b%Y&rsquo; -d &rsquo;1 week
+ago&rsquo;)&rsquo;/,$ p&rsquo; access.log | goaccess -a
+-</p>
+
+<p style="margin-left:11%; margin-top: 1em">If we want to
+parse only a certain time-frame from DATE a to DATE b, we
+can do:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># sed -n
+&rsquo;/5Nov2010/,/5Dec2010/ p&rsquo; access.log | goaccess
+-a -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>VIRTUAL
+HOSTS</b> <br>
+Assuming your log contains the virtual host (server blocks)
+field. For instance:</p>
+
+<p style="margin-left:22%; margin-top: 1em">vhost.com:80
+10.131.40.139 - - [02/Mar/2016:08:14:04 -0600] &quot;GET
+/shop/bag-p-20 HTTP/1.1&quot; 200 6715 &quot;-&quot;
+&quot;Apache (internal dummy connection)&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">And you would
+like to append the virtual host to the request in order to
+see which virtual host the top urls belong to</p>
+
+<p style="margin-left:22%; margin-top: 1em">awk
+&rsquo;$8=$1$8&rsquo; access.log | goaccess -a -</p>
+
+<p style="margin-left:11%; margin-top: 1em">To exclude a
+list of virtual hosts you can do the following:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># grep -v
+&quot;&lsquo;cat exclude_vhost_list_file&lsquo;&quot;
+vhost_access.log | goaccess -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>FILES &amp;
+STATUS CODES</b> <br>
+To parse specific pages, e.g., page views, html, htm, php,
+etc. within a request:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># awk
+&rsquo;$7~/.html|.htm|.php/&rsquo; access.log | goaccess
+-</p>
+
+<p style="margin-left:11%; margin-top: 1em">Note, <i>$7</i>
+is the request field for the common and combined log format,
+(without Virtual Host), if your log includes Virtual Host,
+then you probably want to use <i>$8</i> instead. It&rsquo;s
+best to check which field you are shooting for, e.g.:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># tail -10
+access.log | awk &rsquo;{print $8}&rsquo;</p>
+
+<p style="margin-left:11%; margin-top: 1em">Or to parse a
+specific status code, e.g., 500 (Internal Server Error):</p>
+
+<p style="margin-left:22%; margin-top: 1em"># awk
+&rsquo;$9~/500/&rsquo; access.log | goaccess -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>SERVER</b>
+<br>
+Also, it is worth pointing out that if we want to run
+GoAccess at lower priority, we can run it as:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># nice -n 19
+goaccess -f access.log -a</p>
+
+<p style="margin-left:11%; margin-top: 1em">and if you
+don&rsquo;t want to install it on your server, you can still
+run it from your local machine:</p>
+
+<p style="margin-left:22%; margin-top: 1em"># ssh
+root@server &rsquo;cat /var/log/apache2/access.log&rsquo; |
+goaccess -a -</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>INCREMENTAL
+LOG PROCESSING</b> <br>
+GoAccess has the ability to process logs incrementally
+through the on-disk B+Tree database. It works in the
+following way:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em">1</p></td>
+<td width="3%"></td>
+<td width="85%">
+
+
+<p style="margin-top: 1em">A dataset must be persisted
+first with <i>--keep-db-files,</i> then the same dataset can
+be loaded with <i>--load-from-disk.</i></p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>2</p></td>
+<td width="3%"></td>
+<td width="85%">
+
+
+<p>If new data is passed (piped or through a log file), it
+will append it to the original dataset.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>3</p></td>
+<td width="3%"></td>
+<td width="85%">
+
+
+<p>To preserve the data at all times,
+<i>--keep-db-files</i> must be used.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>4</p></td>
+<td width="3%"></td>
+<td width="85%">
+
+
+<p>If <i>--load-from-disk</i> is used without
+<i>--keep-db-files,</i> database files will be deleted upon
+closing the program.</p></td></tr>
+</table>
+
+<p style="margin-left:11%; margin-top: 1em">For
+instance:</p>
+
+<p style="margin-left:22%; margin-top: 1em">// last month
+access log <br>
+goaccess access.log.1 --keep-db-files</p>
+
+<p style="margin-left:11%; margin-top: 1em">then, load it
+with</p>
+
+<p style="margin-left:22%; margin-top: 1em">// append this
+month access log, and preserve new data <br>
+goaccess access.log --load-from-disk --keep-db-files</p>
+
+<p style="margin-left:11%; margin-top: 1em">To read
+persisted data only (without parsing new data)</p>
+
+<p style="margin-left:22%; margin-top: 1em">goaccess
+--load-from-disk --keep-db-files</p>
+
+<h2>NOTES
+<a name="NOTES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Each active
+panel has a total of 366 items or 50 in the real-time HTML
+report. The number of items is customizable using
+<i>max-items</i> However, only the CSV and JSON output allow
+a maximum number greater than the default value of 366 items
+per panel.</p>
+
+<p style="margin-left:11%; margin-top: 1em">When analyzing
+the same log file twice using the on-disk B+Tree and using
+<i>--keep-db-files</i> and <i>--load-from-disk</i> on each
+run, GoAccess will count each entry twice. Issue #334 will
+address this issue.</p>
+
+<p style="margin-left:11%; margin-top: 1em">A hit is a
+request (line in the access log), e.g., 10 requests = 10
+hits. HTTP requests with the same IP, date, and user agent
+are considered a unique visit.</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">If you think
+you have found a bug, please send me an email to
+<i>goaccess@prosoftcorp.com</i> or use the issue tracker in
+https://github.com/allinurl/goaccess/issues</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Gerardo
+Orellana &lt;goaccess@prosoftcorp.com&gt; For more details
+about it, or new releases, please visit
+https://goaccess.io</p>
+<hr>
+</body>
+</html>
